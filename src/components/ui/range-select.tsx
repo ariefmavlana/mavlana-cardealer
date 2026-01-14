@@ -21,12 +21,12 @@ export const RangeSelect = (props: RangeSelectProps) => {
 			<div className="!mt-1 flex gap-2">
 				<select
 					{...minSelect}
-					className="flex-1 w-full pl-3 py-2 border rounded-md custom-select appearance-none pr-12 bg-no-repeat"
+					className="flex-1 w-full pl-3 py-2 border border-white/20 rounded-md custom-select appearance-none pr-12 bg-black text-gray-100 placeholder:text-gray-500 focus:outline-none focus:border-primary"
 				>
-					<option value="">Select</option>
+					<option value="" className="bg-black text-gray-300">Select</option>
 					{minSelect.options.map((option) => {
 						return (
-							<option key={option.value} value={option.value}>
+							<option key={option.value} value={option.value} className="bg-black text-gray-100">
 								{option.label}
 							</option>
 						);
@@ -34,12 +34,12 @@ export const RangeSelect = (props: RangeSelectProps) => {
 				</select>
 				<select
 					{...maxSelect}
-					className="flex-1 w-full pl-3 py-2 border rounded-md custom-select appearance-none pr-12 bg-no-repeat"
+					className="flex-1 w-full pl-3 py-2 border border-white/20 rounded-md custom-select appearance-none pr-12 bg-black text-gray-100 placeholder:text-gray-500 focus:outline-none focus:border-primary"
 				>
-					<option value="">Select</option>
+					<option value="" className="bg-black text-gray-300">Select</option>
 					{maxSelect.options.map((option) => {
 						return (
-							<option key={option.value} value={option.value}>
+							<option key={option.value} value={option.value} className="bg-black text-gray-100">
 								{option.label}
 							</option>
 						);

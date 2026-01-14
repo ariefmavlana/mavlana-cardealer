@@ -61,8 +61,8 @@ export const LatestArrivalsCarousel = (props: CarouselProps) => {
 				})}
 			</Swiper>
 			<SwiperButtons
-				prevClassName="-left-16 border border-2 border-border hidden lg:flex"
-				nextClassName="-right-16 border border-2 border-border hidden lg:flex"
+				prevClassName="-left-16 border-gray-400 border-2 border-border hidden lg:flex"
+				nextClassName="-right-16 border-gray-400 border-2 border-border hidden lg:flex"
 			/>
 		</div>
 	);

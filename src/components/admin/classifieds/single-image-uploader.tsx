@@ -5,6 +5,7 @@ import { endpoints } from "@/config/endpoints";
 import { api } from "@/lib/api-client";
 import { cn, convertToMb } from "@/lib/utils";
 import { ImagePlus, Loader2 } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 import { type ChangeEvent, type DragEvent, useRef, useState } from "react";
 
 interface ImageUploaderProps {
@@ -137,11 +138,12 @@ export const ImageUploader = (props: ImageUploaderProps) => {
 				onClick={handleClick}
 				onKeyDown={() => null}
 				className={cn(
-					"relative flex aspect-3/2 cursor-pointer flex-col items-center justify-center rounded-md",
-					error && "border-red-500 border-2 border-dotted",
+					"relative flex aspect-3/2 cursor-pointer flex-col items-center justify-center rounded-xl transition-all duration-200",
+					error ? "border-red-500/50 border-2 border-dotted bg-red-500/5" : "hover:bg-white/5",
 					isUploading && "pointer-events-none opacity-50",
-					draggingOver && "opacity-50",
-					!uploadComplete && "border-2 border-dashed border-gray-300",
+					draggingOver ? "bg-primary/10 border-primary/50" : "",
+					!uploadComplete && "border-2 border-dashed border-white/20 hover:border-primary/50",
+					"bg-black/20"
 				)}
 			>
 				<input
@@ -157,23 +159,37 @@ export const ImageUploader = (props: ImageUploaderProps) => {
 					<img
 						src={preview}
 						alt="Preview"
-						className="h-full w-full object-cover rounded-md"
+						className="h-full w-full object-cover rounded-xl"
+						onError={(e) => {
+							e.currentTarget.src = "https://placehold.co/600x400/000000/FFF?text=Image+Load+Error";
+							toast({
+								title: "Image Error",
+								description: "Failed to load image. Please check your internet connection or S3 configuration.",
+								variant: "destructive",
+							});
+						}}
 					/>
 				) : (
-					<div className="text-center flex items-center justify-center flex-col">
-						<ImagePlus className="mx-atuo w-12 h-12 text-gray-400" />
-						<p className="mt-1 text-sm text-gray-600">
-							Click or drag to upload image (max 2mb)
+					<div className="text-center flex items-center justify-center flex-col p-4">
+						<div className="h-16 w-16 rounded-full bg-white/5 flex items-center justify-center mb-4 border border-white/10 group-hover:border-primary/30 transition-colors">
+							<ImagePlus className="w-8 h-8 text-gray-400 group-hover:text-primary transition-colors" />
+						</div>
+						<p className="mt-1 text-sm text-gray-400 font-medium">
+							Click or drag to upload image
 						</p>
+						<p className="text-xs text-gray-600 mt-1">Maximum file size 2MB</p>
 					</div>
 				)}
 				{isUploading && (
-					<div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-						<Loader2 className="w-8 h-8 animate-spin text-gray-500" />
+					<div className="absolute inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm rounded-xl z-10">
+						<div className="flex flex-col items-center">
+							<Loader2 className="w-8 h-8 animate-spin text-primary mb-2" />
+							<p className="text-xs text-white/80 font-medium tracking-wider uppercase">Processing...</p>
+						</div>
 					</div>
 				)}
 			</div>
-			{error && <p className="mt-2 text-sm text-red-500">{error}</p>}
+			{error && <p className="mt-2 text-sm text-red-400 bg-red-500/10 p-2 rounded border border-red-500/20 text-center">{error}</p>}
 		</div>
 	);
 };

@@ -79,14 +79,19 @@ export const OtpForm = () => {
 	}, [isCodePending]);
 
 	return (
-		<div className="min-h-[calc(100vh-4rem)] flex w-full flex-1 justify-center px-6 pt-10 lg:items-center lg:pt-0">
-			<div className="flex w-full max-w-lg flex-col">
-				<h3 className="mb-4 text-4xl lg:text-5xl text-center">
-					One Time Password
-				</h3>
-				<p className="mb-12 text-center text-slate-500">
-					Enter the six digit code sent to your email
-				</p>
+		<div className="min-h-[calc(100vh-4rem)] flex w-full flex-1 justify-center px-6 pt-10 lg:items-center lg:pt-0 bg-[#050505]">
+			<div className="flex w-full max-w-lg flex-col border-white/10 border shadow-[0_0_50px_rgba(0,0,0,0.5)] p-10 rounded-xl bg-[#0A0A0A] backdrop-blur-sm">
+				<div className="flex flex-col items-center mb-6">
+					<div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 border border-primary/20">
+						<span className="text-2xl">🛡️</span>
+					</div>
+					<h3 className="mb-2 text-2xl lg:text-3xl text-center font-heading text-white tracking-wide font-bold uppercase">
+						One Time Password
+					</h3>
+					<p className="mb-8 text-center text-gray-400 text-sm">
+						Enter the six digit code sent to your email
+					</p>
+				</div>
 
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
@@ -94,7 +99,7 @@ export const OtpForm = () => {
 							control={form.control}
 							name="code"
 							render={({ field: { value, onChange, ...rest } }) => (
-								<FormItem className="mb-8">
+								<FormItem className="mb-8 flex justify-center">
 									<FormControl>
 										<OneTimePasswordInput
 											type="number"
@@ -102,7 +107,7 @@ export const OtpForm = () => {
 											{...rest}
 										/>
 									</FormControl>
-									<FormMessage />
+									<FormMessage className="text-center mt-2" />
 								</FormItem>
 							)}
 						/>
@@ -110,25 +115,25 @@ export const OtpForm = () => {
 						<div className="flex w-full items-center justify-center">
 							<button
 								type="button"
-								className="flex items-centewr gap-2.5 text-base font-medium text-slate-600 transition-colors duration-200 hover:text-primary group cursor-pointer"
+								className="flex items-center gap-2.5 text-sm font-medium text-gray-500 transition-colors duration-200 hover:text-primary group cursor-pointer uppercase tracking-wider"
 								onClick={sendCode}
 								disabled={isCodePending}
 							>
 								{isCodePending ? (
-									<Loader2 className="w-6 h-6 text-secondary transition-colors duration-200 group-hover:text-primary animate-spin" />
+									<Loader2 className="w-4 h-4 text-primary animate-spin" />
 								) : (
-									<RotateCw className="w-6 h-6 text-secondary transition-colors duration-200 group-hover:text-primary" />
+									<RotateCw className="w-4 h-4 text-gray-600 transition-colors duration-200 group-hover:text-primary" />
 								)}
 								{sendButtonText}
 							</button>
 						</div>
-						<div className="mt-6 flex w-full flex-col gap-4 md:mt-16">
+						<div className="mt-8 flex w-full flex-col gap-4">
 							<Button
-								className="flex w-full gap-x-2"
+								className="flex w-full gap-x-2 font-bold"
 								disabled={isSubmitPending}
 							>
 								<span className="text-sm uppercase tracking-wider text-inherit">
-									{isSubmitPending ? "Verifying..." : "Verify"}
+									{isSubmitPending ? "Verifying..." : "Verify Code"}
 								</span>
 								{isSubmitPending ? (
 									<Loader2 className="w-4 h-4 shrink-0 animate-spin" />

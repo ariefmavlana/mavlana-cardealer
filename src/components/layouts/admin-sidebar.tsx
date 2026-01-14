@@ -8,7 +8,6 @@ import {
 	SettingsIcon,
 	UsersIcon,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import { ActiveLink } from "../ui/active-link";
@@ -64,7 +63,7 @@ export const AdminSidebar = () => {
 
 	return (
 		<motion.div
-			className="bg-black/20 h-screen overflow-hidden flex flex-col"
+			className="bg-[#050505] border-r border-white/10 h-screen overflow-hidden flex flex-col pt-6 z-50 relative"
 			animate={isSidebarExpanded ? "expanded" : "collapsed"}
 			variants={sidebarVariants}
 			initial="collapsed"
@@ -73,68 +72,65 @@ export const AdminSidebar = () => {
 			onMouseLeave={() => handleSidebarHover(false)}
 		>
 			<div className="flex flex-col grow px-4">
-				<Link href={routes.home}>
-					<div className="relative h-[60px] w-full">
+				<Link href={routes.home} className="mb-8 block">
+					<div className="relative h-[40px] w-full flex items-center justify-center">
 						<AnimatePresence initial={false} mode="wait">
 							{isSidebarExpanded ? (
 								<motion.div
 									key="expanded-logo"
-									className="absolute inset-0"
+									className="absolute inset-0 flex items-center"
 									variants={logoVariants}
 									initial="initial"
 									animate="animate"
 									exit="exit"
 									transition={{ duration: 0.4 }}
 								>
-									<Image
-										src="/logo.svg"
-										fill={true}
-										className="object-contain object-left"
-										alt="Majestic Motors Logo"
-									/>
+									<span className="font-heading text-xl font-bold text-primary tracking-widest uppercase truncate ml-2">
+										Mavlana
+									</span>
 								</motion.div>
 							) : (
 								<motion.div
 									key="collapsed-logo"
-									className="absolute inset-0"
+									className="absolute inset-0 flex items-center justify-center"
 									variants={logoVariants}
 									initial="initial"
 									animate="animate"
 									exit="exit"
 									transition={{ duration: 0.1 }}
 								>
-									<Image
-										src="/logo-mob.svg"
-										fill={true}
-										className="object-contain object-left"
-										alt="Majestic Motors Mobile Logo"
-									/>
+									<span className="font-heading text-xl font-bold text-primary border border-primary/20 rounded-lg w-10 h-10 flex items-center justify-center bg-primary/5">M</span>
 								</motion.div>
 							)}
 						</AnimatePresence>
 					</div>
 				</Link>
 				<nav className="flex flex-col gap-2">
-					{navigation.map((item) => {
+					{navigation.map((item, index) => {
+						const isSeparator = item.name === "Classifieds";
 						return (
-							<ActiveLink
-								key={item.name}
-								href={item.href}
-								className="flex items-center p-2 rounded-lg transition-colors duration-200 w-full cursor-pointer"
-							>
-								<div className="flex items-center justify-center">
-									<item.icon aria-hidden="true" className="h-6 w-6 shrinnk-0" />
-									<motion.span
-										variants={menuTextVariants}
-										animate={isSidebarExpanded ? "expanded" : "collapsed"}
-										initial="collapsed"
-										transition={{ duration: 0.3, ease: "easeInOut" }}
-										className="whitespace-nowrap overflow-hidden"
-									>
-										{item.name}
-									</motion.span>
-								</div>
-							</ActiveLink>
+							<div key={item.name} className={isSeparator ? "mt-6 pt-6 border-t border-white/5" : ""}>
+								{isSeparator && isSidebarExpanded && (
+									<p className="text-xs font-semibold text-gray-500 uppercase tracking-widest pl-3 mb-3">Inventory</p>
+								)}
+								<ActiveLink
+									href={item.href}
+									className="flex items-center p-3 rounded-lg transition-all duration-200 w-full cursor-pointer hover:bg-white/5 data-[active=true]:bg-primary/10 data-[active=true]:border-primary/20 border border-transparent"
+								>
+									<div className="flex items-center">
+										<item.icon aria-hidden="true" className="h-5 w-5 shrink-0 text-gray-400 group-hover:text-primary data-[active=true]:text-primary" />
+										<motion.span
+											variants={menuTextVariants}
+											animate={isSidebarExpanded ? "expanded" : "collapsed"}
+											initial="collapsed"
+											transition={{ duration: 0.3, ease: "easeInOut" }}
+											className="whitespace-nowrap overflow-hidden text-sm font-medium text-gray-300 group-hover:text-white"
+										>
+											{item.name}
+										</motion.span>
+									</div>
+								</ActiveLink>
+							</div>
 						);
 					})}
 				</nav>

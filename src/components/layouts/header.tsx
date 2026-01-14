@@ -47,7 +47,7 @@ export const PublicHeader = async () => {
 					<SignOutForm />
 				</div>
 			) : (
-				<Link href={routes.favourites} className="group relative">
+				<Link href={routes.favourites} className="group relative ml-8">
 					<div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all duration-300">
 						<HeartIcon className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
 					</div>

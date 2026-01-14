@@ -18,6 +18,10 @@ export async function issueChallenge(userId: string, email: string) {
 
 	await redis.setex(`${REDIS_PREFIX}:uid-${userId}`, 10 * 60, challenge);
 
+	console.log("----------------------------------------");
+	console.log("🔐 YOUR OTP CODE:", code);
+	console.log("----------------------------------------");
+
 	const result = await sendEmail({
 		from: env.FROM_EMAIL_ADDRESS,
 		to: email,

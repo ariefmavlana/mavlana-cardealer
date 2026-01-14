@@ -17,12 +17,8 @@ export const ActiveLink = (props: ActiveLinkProps) => {
 	return (
 		<Link
 			href={href}
-			className={cn(
-				className,
-				isActive
-					? "bg-primary text-primary-foreground hover:bg-primary"
-					: "text-muted hover:bg-white/10",
-			)}
+			data-active={isActive}
+			className={cn(className)}
 		>
 			{children}
 		</Link>

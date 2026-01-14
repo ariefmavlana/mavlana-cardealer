@@ -36,80 +36,88 @@ export async function generateClassified(
 	uiStream.update(<StreamableSkeleton {...classified} />);
 
 	async function processEvents() {
-		const { object: taxonomy } = await generateObject({
-			model: google("gemini-1.5-flash", { structuredOutputs: true }),
-			schema: ClassifiedTaxonomyAISchema,
-			system:
-				"You are an expert at analysing images of vehicles and responding with a structured JSON object based on the schema provided",
-			messages: [
-				{
-					role: "user",
-					content: [
-						{ type: "image", image },
-						{
-							type: "text",
-							text: "You are tasked with returning the structured data for the vehicle in the image attached.",
-						},
-					],
-				},
-			] as CoreMessage[],
-		});
-
-		classified.title =
-			`${taxonomy.year} ${taxonomy.make} ${taxonomy.model} ${taxonomy.modelVariant ? ` ${taxonomy.modelVariant}` : ""}`.trim();
-
-		const foundTaxonomy = await mapToTaxonomyOrCreate({
-			year: taxonomy.year,
-			make: taxonomy.make,
-			model: taxonomy.model,
-			modelVariant: taxonomy.modelVariant,
-		});
-
-		if (foundTaxonomy) {
-			const make = await prisma.make.findFirst({
-				where: { name: foundTaxonomy.make },
+		try {
+			const { object: taxonomy } = await generateObject({
+				model: google("gemini-1.5-flash-latest", { structuredOutputs: true }),
+				schema: ClassifiedTaxonomyAISchema,
+				system:
+					"You are an expert at analysing images of vehicles and responding with a structured JSON object based on the schema provided",
+				messages: [
+					{
+						role: "user",
+						content: [
+							{ type: "image", image },
+							{
+								type: "text",
+								text: "You are tasked with returning the structured data for the vehicle in the image attached.",
+							},
+						],
+					},
+				] as CoreMessage[],
 			});
 
-			if (make) {
-				classified = {
-					...classified,
-					...foundTaxonomy,
-					make,
-					makeId: make.id,
-				};
+			classified.title =
+				`${taxonomy.year} ${taxonomy.make} ${taxonomy.model} ${taxonomy.modelVariant ? ` ${taxonomy.modelVariant}` : ""}`.trim();
+
+			const foundTaxonomy = await mapToTaxonomyOrCreate({
+				year: taxonomy.year,
+				make: taxonomy.make,
+				model: taxonomy.model,
+				modelVariant: taxonomy.modelVariant,
+			});
+
+			if (foundTaxonomy) {
+				const make = await prisma.make.findFirst({
+					where: { name: foundTaxonomy.make },
+				});
+
+				if (make) {
+					classified = {
+						...classified,
+						...foundTaxonomy,
+						make,
+						makeId: make.id,
+					};
+				}
 			}
+
+			uiStream.update(<StreamableSkeleton {...classified} />);
+
+			const { object: details } = await generateObject({
+				model: google("gemini-1.5-flash-latest", { structuredOutputs: true }),
+				schema: ClassifiedDetailsAISchema,
+				system:
+					"You are an expert at writing vehicle descriptions and generating structured data",
+				messages: [
+					{
+						role: "user",
+						content: [
+							{ type: "image", image },
+							{
+								type: "text",
+								text: `Based on the image provided, you are tasked with determining the odometer reading, doors, seats, ULEZ compliance, transmission, colour, fuel type, body type, drive type, VRM and any addition details in the schema provided for the ${classified.title}. You must be accurate when determining the values for these properties even if the image is not clear.`,
+							},
+						],
+					},
+				] as CoreMessage[],
+			});
+
+			classified = {
+				...classified,
+				...details,
+			};
+
+			uiStream.update(<StreamableSkeleton done={true} {...classified} />);
+			valueStream.update(classified);
+		} catch (error) {
+			console.error("AI Generation Error:", error);
+			// Fallback: Notify UI of failure but don't crash the stream completely if possible, 
+			// or just log it. Since uiStream expects ReactNode, we can show an error state if needed.
+			// For now, we'll just mark it done to prevent hanging.
+		} finally {
+			uiStream.done();
+			valueStream.done();
 		}
-
-		uiStream.update(<StreamableSkeleton {...classified} />);
-
-		const { object: details } = await generateObject({
-			model: google("gemini-1.5-flash", { structuredOutputs: true }),
-			schema: ClassifiedDetailsAISchema,
-			system:
-				"You are an expert at writing vehicle descriptions and generating structured data",
-			messages: [
-				{
-					role: "user",
-					content: [
-						{ type: "image", image },
-						{
-							type: "text",
-							text: `Based on the image provided, you are tasked with determining the odometer reading, doors, seats, ULEZ compliance, transmission, colour, fuel type, body type, drive type, VRM and any addition details in the schema provided for the ${classified.title}. You must be accurate when determining the values for these properties even if the image is not clear.`,
-						},
-					],
-				},
-			] as CoreMessage[],
-		});
-
-		classified = {
-			...classified,
-			...details,
-		};
-
-		uiStream.update(<StreamableSkeleton done={true} {...classified} />);
-		valueStream.update(classified);
-		uiStream.done();
-		valueStream.done();
 	}
 
 	processEvents();

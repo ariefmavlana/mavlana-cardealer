@@ -37,8 +37,8 @@ export const signInAction = async (_: PrevState, formData: FormData) => {
 			message: "Signed in successfully!",
 		};
 	} catch (error) {
-		console.log({ error });
 		if (isRedirectError(error)) throw error;
+		console.log({ error });
 		return { success: false, message: "Invalid Credentials" };
 	}
 };

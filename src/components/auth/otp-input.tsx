@@ -20,11 +20,11 @@ const containerClassNames = {
 };
 
 const inputClassNames = {
-	base: "block peer text-center texct-slate-950 bg-transparent mr-2 focus:placeholder:opacity-0 focus:outline-hidden transition duration-200 disabled:bg-zinc-50 disabled:placeholder:text-gray-400 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-200 rounded focus:outline-hidden focus:border-primary",
-	size: "p-2 text-2xl font-medium w-12 h-12 sm:h-[70px] sm: w-[70px]",
+	base: "block peer text-center text-white bg-black/50 mr-2 focus:placeholder:opacity-0 focus:outline-hidden transition duration-200 disabled:bg-white/5 disabled:placeholder:text-gray-600 disabled:text-gray-600 disabled:cursor-not-allowed disabled:border-white/10 rounded focus:outline-hidden focus:border-primary focus:ring-primary shadow-[0_0_10px_rgba(0,0,0,0.2)]",
+	size: "p-2 text-2xl font-heading font-bold w-12 h-12 sm:h-[70px] sm:w-[70px]",
 	color: {
-		base: "bg-transparent focus:ring-[0.6px] border border-gray-300 focus-visible:border-secondary focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-secondary placeholder:text-slate-950",
-		active: "not-read-only:hover:enabled:border-secondary focus:ring-secondary",
+		base: "bg-black/50 focus:ring-1 border border-white/10 focus-visible:border-primary focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary placeholder:text-gray-600",
+		active: "not-read-only:hover:enabled:border-primary/50 focus:ring-primary",
 	},
 };
 

@@ -86,7 +86,7 @@ export const SelectDate = (props: MultiStepFormComponentProps) => {
 	return (
 		<Form {...form}>
 			<form
-				className="mx-auto bg-white flex flex-col rounded-b-lg shadow-lg p-6 h-96"
+				className="mx-auto bg-[#0A0A0A] border border-white/10 flex flex-col rounded-b-lg shadow-2xl p-6 h-96 text-white"
 				onSubmit={form.handleSubmit(onSelectDate)}
 			>
 				<div className="space-y-6 flex-1">
@@ -95,7 +95,7 @@ export const SelectDate = (props: MultiStepFormComponentProps) => {
 						name="handoverDate"
 						render={({ field: { ref, ...rest } }) => (
 							<FormItem>
-								<FormLabel htmlFor="handoverDate">Select a Date</FormLabel>
+								<FormLabel htmlFor="handoverDate" className="text-gray-300">Select a Date</FormLabel>
 								<FormControl>
 									<Select options={generateDateOptions()} {...rest} />
 								</FormControl>
@@ -108,7 +108,7 @@ export const SelectDate = (props: MultiStepFormComponentProps) => {
 						name="handoverTime"
 						render={({ field: { ref, ...rest } }) => (
 							<FormItem>
-								<FormLabel htmlFor="handoverTime">Select a Time</FormLabel>
+								<FormLabel htmlFor="handoverTime" className="text-gray-300">Select a Time</FormLabel>
 								<FormControl>
 									<Select options={generateTimeOptions()} {...rest} />
 								</FormControl>
@@ -122,7 +122,8 @@ export const SelectDate = (props: MultiStepFormComponentProps) => {
 						type="button"
 						onClick={prevStep}
 						disabled={isPrevPending}
-						className="uppercase font-bold flex gap-x-3 w-full flex-1"
+						className="uppercase font-bold flex gap-x-3 w-full flex-1 border-white/20 hover:bg-white/10"
+						variant="outline"
 					>
 						{isPrevPending ? (
 							<Loader2 className="w-4 h-4 shrink-0 animate-spin" />
@@ -132,7 +133,7 @@ export const SelectDate = (props: MultiStepFormComponentProps) => {
 					<Button
 						type="submit"
 						disabled={isPending}
-						className="uppercase font-bold flex gap-x-3 w-full flex-1"
+						className="uppercase font-bold flex gap-x-3 w-full flex-1 bg-primary text-black hover:bg-white hover:text-black tracking-widest"
 					>
 						{isPending ? (
 							<Loader2 className="w-4 h-4 shrink-0 animate-spin" />

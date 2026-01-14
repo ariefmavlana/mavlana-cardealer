@@ -36,28 +36,38 @@ export default async function FavouritesPage(props: PageProps) {
 
 	return (
 		<div className="container mx-auto px-4 py-8 min-h-[80dvh]">
-			<h1 className="text-3xl font-bold mb-6">Your Favourite Classifieds</h1>
-			<div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-				{classifieds.map((classified) => {
-					return (
-						<ClassifiedCard
-							key={classified.id}
-							classified={classified}
-							favourites={favourites ? favourites.ids : []}
-						/>
-					);
-				})}
-			</div>
-			<div className="mt-8 flex">
+			<h1 className="text-2xl md:text-3xl font-heading font-bold mb-8 text-primary uppercase tracking-widest border-b border-white/10 pb-4">
+				Your <span className="text-white">Favourite Collection</span>
+			</h1>
+
+			{classifieds.length === 0 ? (
+				<div className="flex flex-col items-center justify-center py-20 bg-[#0A0A0A] border border-white/10 rounded-xl">
+					<p className="text-gray-400 font-light mb-4">You haven't added any vehicles to your favourites yet.</p>
+				</div>
+			) : (
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+					{classifieds.map((classified) => {
+						return (
+							<ClassifiedCard
+								key={classified.id}
+								classified={classified}
+								favourites={favourites ? favourites.ids : []}
+							/>
+						);
+					})}
+				</div>
+			)}
+
+			<div className="mt-12 flex justify-center">
 				<CustomPagination
 					baseURL={routes.favourites}
 					totalPages={totalPages}
 					styles={{
 						paginationRoot: "justify-center",
-						paginationPrevious: "",
-						paginationNext: "",
-						paginationLinkActive: "",
-						paginationLink: "border-none active:border",
+						paginationPrevious: "text-primary/70 hover:text-primary",
+						paginationNext: "text-primary/70 hover:text-primary",
+						paginationLinkActive: "border-primary text-primary bg-primary/10",
+						paginationLink: "border-gray-500 text-gray-400 hover:text-primary hover:border-primary active:border-primary transition-all",
 					}}
 				/>
 			</div>

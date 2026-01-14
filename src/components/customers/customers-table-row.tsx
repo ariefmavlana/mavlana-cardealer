@@ -8,7 +8,7 @@ import { ActionButtons } from "./action-buttons";
 
 export const CustomerTableRow = (customer: CustomerWithClassified) => {
 	return (
-		<TableRow className="text-muted/75 border-white/5 hover:bg-primary-300">
+		<TableRow className="text-gray-300 border-white/5 hover:bg-white/5 transition-colors">
 			<TableCell className="font-medium">{customer.id}</TableCell>
 			<TableCell className="font-medium">
 				<Badge

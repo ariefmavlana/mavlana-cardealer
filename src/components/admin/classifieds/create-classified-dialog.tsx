@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import {
 	Dialog,
 	DialogContent,
+	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -91,13 +92,16 @@ export const CreateClassifiedDialog = () => {
 	return (
 		<Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
 			<DialogTrigger asChild>
-				<Button className="ml-4" size="sm">
+				<Button className="ml-4 tracking-wider uppercase font-bold" size="sm">
 					Create New
 				</Button>
 			</DialogTrigger>
-			<DialogContent className={cn("max-w-6xl bg-white")}>
+			<DialogContent className={cn("max-w-6xl bg-[#0A0A0A] border-white/10 text-white shadow-2xl backdrop-blur-xl")}>
 				<DialogHeader>
-					<DialogTitle>Create New Classified</DialogTitle>
+					<DialogTitle className="font-heading text-2xl text-white uppercase tracking-wider">Create New Classified</DialogTitle>
+					<DialogDescription className="text-gray-400">
+						Upload an image of the vehicle to automatically generate details.
+					</DialogDescription>
 				</DialogHeader>
 				{messages.length ? (
 					<Form {...createForm}>
@@ -110,18 +114,19 @@ export const CreateClassifiedDialog = () => {
 									{message.display}
 								</div>
 							))}
-							<div className="flex justify-between gap-2">
+							<div className="flex justify-between gap-2 border-t border-white/10 pt-4 mt-6">
 								<Button
 									variant="outline"
 									type="button"
 									onClick={() => setIsModalOpen(false)}
+									className="border-white/10 text-gray-300 hover:bg-white/5 hover:text-white"
 								>
 									Cancel
 								</Button>
 								<Button
 									disabled={isCreating || isUploading}
 									type="submit"
-									className="flex items-center gap-x-2"
+									className="flex items-center gap-x-2 font-bold uppercase tracking-wider"
 								>
 									{isCreating || isUploading ? (
 										<Loader2 className="animate-spin h-4 w-4" />
@@ -138,21 +143,22 @@ export const CreateClassifiedDialog = () => {
 							onSubmit={imageForm.handleSubmit(onImageSubmit)}
 						>
 							<ImageUploader onUploadComplete={handleImageUpload} />
-							<div className="flex justify-between gap-2">
+							<div className="flex justify-between gap-2 border-t border-white/10 pt-4 mt-6">
 								<Button
 									variant="outline"
 									type="button"
 									onClick={() => setIsModalOpen(false)}
+									className="border-white/10 text-gray-300 hover:bg-white/5 hover:text-white"
 								>
 									Cancel
 								</Button>
 								<Button
 									disabled={isUploading}
 									type="submit"
-									className="flex items-center gap-x-2"
+									className="flex items-center gap-x-2 font-bold uppercase tracking-wider"
 								>
 									{isUploading && <Loader2 className="animate-spin h-4 w-4" />}
-									Upload
+									Upload & Generate
 								</Button>
 							</div>
 						</form>

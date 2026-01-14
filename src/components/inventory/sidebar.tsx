@@ -93,33 +93,33 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
 	};
 
 	return (
-		<div className="py-4 w-[21.25rem] bg-white border-r border-muted hidden lg:block">
-			<div>
-				<div className="text-lg font-semibold flex justify-between px-4">
+		<div className="py-6 w-[22rem] bg-black/80 backdrop-blur-xl border-r border-white/10 hidden lg:block h-screen sticky top-20 overflow-y-auto custom-scrollbar">
+			<div className="mb-6">
+				<div className="text-lg font-heading font-bold text-white flex justify-between items-center px-6 uppercase tracking-wider">
 					<span>Filters</span>
 					<button
 						type="button"
 						onClick={clearFilters}
 						aria-disabled={!filterCount}
 						className={cn(
-							"text-sm text-gray-500 py-1",
+							"text-xs font-sans font-medium text-primary py-1 transition-opacity",
 							!filterCount
-								? "disabled opacity-50 pointer-events-none cursor-default"
-								: "hover:underline cursor-pointer",
+								? "disabled opacity-0 pointer-events-none cursor-default"
+								: "hover:text-white cursor-pointer opacity-100",
 						)}
 					>
-						Clear all {filterCount ? `(${filterCount})` : null}
+						Reset {filterCount ? `(${filterCount})` : null}
 					</button>
 				</div>
 				<div className="mt-2" />
 			</div>
-			<div className="p-4">
+			<div className="px-6 mb-6">
 				<SearchInput
 					placeholder="Search classifieds..."
-					className="w-full px-3 py-2 border rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+					className="w-full px-4 py-2 bg-white/5 border border-white/10 text-white rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary placeholder:text-gray-400"
 				/>
 			</div>
-			<div className="p-4 space-y-2">
+			<div className="px-6 space-y-4 pb-20">
 				<TaxonomyFilters
 					searchParams={searchParams}
 					handleChange={handleChange}
@@ -168,6 +168,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
 						label: value,
 						value,
 					}))}
+					selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 				/>
 				<Select
 					label="Odometer Unit"
@@ -178,6 +179,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
 						label: formatOdometerUnit(value),
 						value,
 					}))}
+					selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 				/>
 				<Select
 					label="Transmission"
@@ -188,6 +190,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
 						label: formatTransmission(value),
 						value,
 					}))}
+					selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 				/>
 				<Select
 					label="Fuel Type"
@@ -198,6 +201,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
 						label: formatFuelType(value),
 						value,
 					}))}
+					selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 				/>
 				<Select
 					label="Body Type"
@@ -208,6 +212,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
 						label: formatBodyType(value),
 						value,
 					}))}
+					selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 				/>
 				<Select
 					label="Colour"
@@ -218,6 +223,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
 						label: formatColour(value),
 						value,
 					}))}
+					selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 				/>
 				<Select
 					label="ULEZ Compliance"
@@ -228,6 +234,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
 						label: formatUlezCompliance(value),
 						value,
 					}))}
+					selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 				/>
 
 				<Select
@@ -239,6 +246,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
 						label: Number(i + 1).toString(),
 						value: Number(i + 1).toString(),
 					}))}
+					selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 				/>
 				<Select
 					label="Seats"
@@ -249,6 +257,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
 						label: Number(i + 1).toString(),
 						value: Number(i + 1).toString(),
 					}))}
+					selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 				/>
 			</div>
 		</div>

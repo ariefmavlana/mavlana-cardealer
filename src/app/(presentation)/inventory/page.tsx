@@ -57,14 +57,14 @@ export default async function InventoryPage(props: PageProps) {
 	const totalPages = Math.ceil(count / CLASSIFIEDS_PER_PAGE);
 
 	return (
-		<div className="flex">
+		<div className="flex bg-black min-h-screen">
 			<Sidebar minMaxValues={minMaxResult} searchParams={searchParams} />
 
-			<div className="flex-1 p-4 bg-white">
-				<div className="flex space-y-2 items-center justify-between pb-4 -mt-1">
-					<div className="flex justify-between items-center w-full">
-						<h2 className="text-sm md:text-base lg:text-xl font-semibold min-w-fit">
-							We have found {count} classifieds
+			<div className="flex-1 p-6 md:p-8 bg-black">
+				<div className="flex flex-col md:flex-row space-y-4 md:space-y-0 items-center justify-between pb-8 border-b border-white/10 mb-8">
+					<div className="flex justify-between items-center w-full md:w-auto gap-4">
+						<h2 className="text-sm md:text-xl font-heading font-bold text-primary uppercase tracking-wider">
+							<span className="text-primary">{count}</span> Exclusive Vehicles Found
 						</h2>
 						<DialogFilters
 							minMaxValues={minMaxResult}
@@ -77,10 +77,10 @@ export default async function InventoryPage(props: PageProps) {
 						totalPages={totalPages}
 						styles={{
 							paginationRoot: "justify-end hidden lg:flex",
-							paginationPrevious: "",
-							paginationNext: "",
-							paginationLink: "border-none active:border text-black",
-							paginationLinkActive: "",
+							paginationPrevious: "text-primary/70 hover:text-primary",
+							paginationNext: "text-primary/70 hover:text-primary",
+							paginationLink: "border-gray-400 text-primary/70 hover:text-primary hover:border-primary active:border-primary",
+							paginationLinkActive: "border-primary text-primary bg-primary/10",
 						}}
 					/>
 				</div>
@@ -96,11 +96,11 @@ export default async function InventoryPage(props: PageProps) {
 					baseURL={routes.inventory}
 					totalPages={totalPages}
 					styles={{
-						paginationRoot: "justify-center lg:hidden pt-12",
-						paginationPrevious: "",
-						paginationNext: "",
-						paginationLink: "border-none active:border",
-						paginationLinkActive: "",
+						paginationRoot: "justify-center lg:hidden pt-16 pb-8",
+						paginationPrevious: "text-primary/70 hover:text-primary",
+						paginationNext: "text-primary/70 hover:text-primary",
+						paginationLink: "border-gray-400 text-primary/70 hover:text-primary hover:border-primary active:border-primary",
+						paginationLinkActive: "border-primary text-primary",
 					}}
 				/>
 			</div>

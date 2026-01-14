@@ -12,7 +12,7 @@ export const FeaturesSection = () => {
 					<h2 className="mt-2 uppercase text-4xl font-heading font-bold tracking-tight text-white sm:text-7xl">
 						No car? No problem
 					</h2>
-					<p className="mt-6 text-lg leading-8 text-gray-400 font-light max-w-2xl mx-auto">
+					<p className="mt-6 text-lg leading-8 text-gray-300 font-light max-w-2xl mx-auto">
 						Our exclusive collection offers unmatched luxury and speed for the
 						ultimate driving experience. Every vehicle is certified and ready for the road.
 					</p>

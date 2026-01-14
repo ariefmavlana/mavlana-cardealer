@@ -59,7 +59,7 @@ export const StreamableSkeleton = (props: StreamableSkeletonProps) => {
 							className="rounded-lg aspect-3/2 object-cover"
 						/>
 					) : (
-						<Skeleton className="aspect-3/2 w-full" />
+						<Skeleton className="aspect-3/2 w-full bg-white/10" />
 					)}
 				</div>
 				<div className="md:w-1/2 md:pl-8 mt-4 md:mt-0">
@@ -73,134 +73,134 @@ export const StreamableSkeleton = (props: StreamableSkeletonProps) => {
 								className="mr-4"
 							/>
 						) : !done ? (
-							<Skeleton className="w-20 h-16 mr-4" />
+							<Skeleton className="w-20 h-16 mr-4 bg-white/10" />
 						) : null}
 						<div>
 							{title ? (
-								<h1 className="text-2xl font-bold">{title}</h1>
+								<h1 className="text-2xl font-bold font-heading text-white">{title}</h1>
 							) : (
-								<Skeleton className="h-8 w-64 mb-2" />
+								<Skeleton className="h-8 w-64 mb-2 bg-white/10" />
 							)}
 						</div>
 					</div>
 					<div className="my-4 flex flex-wrap items-center gap-2">
 						{odoReading && odoUnit ? (
-							<span className="bg-gray-200 text-gray-800 text-sm font-medium px-2 5 py-0 5 rounded-md">
+							<span className="bg-white/5 border border-white/10 text-gray-300 text-sm font-medium px-2.5 py-0.5 rounded-md">
 								{formatNumber(odoReading)} {formatOdometerUnit(odoUnit)}
 							</span>
 						) : !done ? (
-							<Skeleton className="h-6 w-16 rounded-md" />
+							<Skeleton className="h-6 w-16 rounded-md bg-white/10" />
 						) : null}
 						{fuelType ? (
-							<span className="bg-gray-200 text-gray-800 text-sm font-medium px-2 5 py-0 5 rounded-md">
+							<span className="bg-white/5 border border-white/10 text-gray-300 text-sm font-medium px-2.5 py-0.5 rounded-md">
 								{formatFuelType(fuelType)}
 							</span>
 						) : !done ? (
-							<Skeleton className="h-6 w-16 rounded-md" />
+							<Skeleton className="h-6 w-16 rounded-md bg-white/10" />
 						) : null}
 						{colour ? (
-							<span className="bg-gray-200 text-gray-800 text-sm font-medium px-2 5 py-0 5 rounded-md">
+							<span className="bg-white/5 border border-white/10 text-gray-300 text-sm font-medium px-2.5 py-0.5 rounded-md">
 								{formatColour(colour)}
 							</span>
 						) : !done ? (
-							<Skeleton className="h-6 w-16 rounded-md" />
+							<Skeleton className="h-6 w-16 rounded-md bg-white/10" />
 						) : null}
 						{transmission ? (
-							<span className="bg-gray-200 text-gray-800 text-sm font-medium px-2 5 py-0 5 rounded-md">
+							<span className="bg-white/5 border border-white/10 text-gray-300 text-sm font-medium px-2.5 py-0.5 rounded-md">
 								{formatTransmission(transmission)}
 							</span>
 						) : !done ? (
-							<Skeleton className="h-6 w-16 rounded-md" />
+							<Skeleton className="h-6 w-16 rounded-md bg-white/10" />
 						) : null}
 					</div>
 					{description ? (
-						<p className="text-gray-600 mb-4">{description}</p>
+						<p className="text-gray-400 mb-4 text-sm leading-relaxed">{description}</p>
 					) : (
-						<Skeleton className="h-20 w-full mb-4" />
+						<Skeleton className="h-20 w-full mb-4 bg-white/10" />
 					)}
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-						<div className="bg-gray-100 rounded-lg shadow-xs p-4 text-center">
+						<div className="bg-white/5 border border-white/5 rounded-lg shadow-xs p-4 text-center hover:border-primary/20 transition-colors">
 							{ulezCompliance === "EXEMPT" ? (
-								<CheckIcon className="w-6 h-6 mx-auto text-green-500" />
+								<CheckIcon className="w-6 h-6 mx-auto text-green-400" />
 							) : (
-								<XIcon className="w-6 h-6 mx-auto text-red-500" />
+								<XIcon className="w-6 h-6 mx-auto text-red-400" />
 							)}
 							{ulezCompliance ? (
-								<p className="text-sm font-medium mt-2">
+								<p className="text-sm font-medium mt-2 text-white/90">
 									{formatUlezCompliance(ulezCompliance)}
 								</p>
 							) : !done ? (
-								<Skeleton className="h-4 w-16 mx-auto mt-2" />
+								<Skeleton className="h-4 w-16 mx-auto mt-2 bg-white/10" />
 							) : (
-								<p className="text-sm font-medium mt-2">UNKNOWN</p>
+								<p className="text-sm font-medium mt-2 text-gray-500">UNKNOWN</p>
 							)}
 						</div>
-						<div className="bg-gray-100 rounded-lg shadow-xs p-4 text-center">
-							<Fingerprint className="w-6 h-6 mx-auto text-zinc-400" />
+						<div className="bg-white/5 border border-white/5 rounded-lg shadow-xs p-4 text-center hover:border-primary/20 transition-colors">
+							<Fingerprint className="w-6 h-6 mx-auto text-primary/70" />
 							{vrm ? (
-								<p className="text-sm font-medium mt-2">{vrm}</p>
+								<p className="text-sm font-medium mt-2 text-white/90">{vrm}</p>
 							) : !done ? (
-								<Skeleton className="h-4 w-16 mx-auto mt-2" />
+								<Skeleton className="h-4 w-16 mx-auto mt-2 bg-white/10" />
 							) : (
-								<p className="text-sm font-medium mt-2">UNKNOWN</p>
+								<p className="text-sm font-medium mt-2 text-gray-500">UNKNOWN</p>
 							)}
 						</div>
-						<div className="bg-gray-100 rounded-lg shadow-xs p-4 text-center">
-							<CarIcon className="w-6 h-6 mx-auto text-zinc-400" />
+						<div className="bg-white/5 border border-white/5 rounded-lg shadow-xs p-4 text-center hover:border-primary/20 transition-colors">
+							<CarIcon className="w-6 h-6 mx-auto text-primary/70" />
 							{bodyType ? (
-								<p className="text-sm font-medium mt-2">
+								<p className="text-sm font-medium mt-2 text-white/90">
 									{formatBodyType(bodyType)}
 								</p>
 							) : !done ? (
-								<Skeleton className="h-4 w-16 mx-auto mt-2" />
+								<Skeleton className="h-4 w-16 mx-auto mt-2 bg-white/10" />
 							) : (
-								<p className="text-sm font-medium mt-2">UNKNOWN</p>
+								<p className="text-sm font-medium mt-2 text-gray-500">UNKNOWN</p>
 							)}
 						</div>
-						<div className="bg-gray-100 rounded-lg shadow-xs p-4 text-center">
-							<FuelIcon className="w-6 h-6 mx-auto text-zinc-400" />
+						<div className="bg-white/5 border border-white/5 rounded-lg shadow-xs p-4 text-center hover:border-primary/20 transition-colors">
+							<FuelIcon className="w-6 h-6 mx-auto text-primary/70" />
 							{fuelType ? (
-								<p className="text-sm font-medium mt-2">
+								<p className="text-sm font-medium mt-2 text-white/90">
 									{formatFuelType(fuelType)}
 								</p>
 							) : !done ? (
-								<Skeleton className="h-4 w-16 mx-auto mt-2" />
+								<Skeleton className="h-4 w-16 mx-auto mt-2 bg-white/10" />
 							) : (
-								<p className="text-sm font-medium mt-2">UNKNOWN</p>
+								<p className="text-sm font-medium mt-2 text-gray-500">UNKNOWN</p>
 							)}
 						</div>
-						<div className="bg-gray-100 rounded-lg shadow-xs p-4 text-center">
-							<PowerIcon className="w-6 h-6 mx-auto text-zinc-400" />
+						<div className="bg-white/5 border border-white/5 rounded-lg shadow-xs p-4 text-center hover:border-primary/20 transition-colors">
+							<PowerIcon className="w-6 h-6 mx-auto text-primary/70" />
 							{transmission ? (
-								<p className="text-sm font-medium mt-2">
+								<p className="text-sm font-medium mt-2 text-white/90">
 									{formatTransmission(transmission)}
 								</p>
 							) : !done ? (
-								<Skeleton className="h-4 w-16 mx-auto mt-2" />
+								<Skeleton className="h-4 w-16 mx-auto mt-2 bg-white/10" />
 							) : (
-								<p className="text-sm font-medium mt-2">UNKNOWN</p>
+								<p className="text-sm font-medium mt-2 text-gray-500">UNKNOWN</p>
 							)}
 						</div>
-						<div className="bg-gray-100 rounded-lg shadow-xs p-4 text-center">
-							<GaugeIcon className="w-6 h-6 mx-auto text-zinc-400" />
+						<div className="bg-white/5 border border-white/5 rounded-lg shadow-xs p-4 text-center hover:border-primary/20 transition-colors">
+							<GaugeIcon className="w-6 h-6 mx-auto text-primary/70" />
 							{odoReading && odoUnit ? (
-								<p className="text-sm font-medium mt-2">
+								<p className="text-sm font-medium mt-2 text-white/90">
 									{formatNumber(odoReading)} {formatOdometerUnit(odoUnit)}
 								</p>
 							) : !done ? (
-								<Skeleton className="h-4 w-16 mx-auto mt-2" />
+								<Skeleton className="h-4 w-16 mx-auto mt-2 bg-white/10" />
 							) : (
-								<p className="text-sm font-medium mt-2">UNKNOWN</p>
+								<p className="text-sm font-medium mt-2 text-gray-500">UNKNOWN</p>
 							)}
 						</div>
-						<div className="bg-gray-100 rounded-lg shadow-xs p-4 text-center">
-							<UsersIcon className="w-6 h-6 mx-auto text-zinc-400" />
+						<div className="bg-white/5 border border-white/5 rounded-lg shadow-xs p-4 text-center hover:border-primary/20 transition-colors">
+							<UsersIcon className="w-6 h-6 mx-auto text-primary/70" />
 							{seats ? (
-								<p className="text-sm font-medium mt-2">{seats}</p>
+								<p className="text-sm font-medium mt-2 text-white/90">{seats}</p>
 							) : !done ? (
-								<Skeleton className="h-4 w-16 mx-auto mt-2" />
+								<Skeleton className="h-4 w-16 mx-auto mt-2 bg-white/10" />
 							) : (
-								<p className="text-sm font-medium mt-2">UNKNOWN</p>
+								<p className="text-sm font-medium mt-2 text-gray-500">UNKNOWN</p>
 							)}
 						</div>
 						<div className="bg-gray-100 rounded-lg shadow-xs p-4 text-center">

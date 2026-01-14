@@ -48,7 +48,7 @@ export const SearchInput = (props: SearchInputProps) => {
 
 	return (
 		<form className="relative flex-1">
-			<SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+			<SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400" />
 			<Input
 				ref={inputRef}
 				defaultValue={q || ""}

@@ -117,7 +117,7 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
 								</h3>
 							</Link>
 							{classified?.description && (
-								<div className="text-sm text-gray-400 line-clamp-2 font-light">
+								<div className="text-sm text-gray-300 line-clamp-2 font-light">
 									<HTMLParser html={classified.description} />
 								</div>
 							)}
@@ -150,7 +150,7 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
 								</Link>
 							</Button>
 							<Button
-								className="flex-1 border-white/20 text-white hover:bg-white/10 hover:text-primary font-heading tracking-wider uppercase text-xs"
+								className="flex-1 bg-transparent border border-primary/40 text-primary hover:bg-primary hover:text-black font-heading font-bold tracking-wider uppercase text-xs transition-colors duration-300"
 								asChild
 								variant="outline"
 								size="sm"

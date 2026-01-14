@@ -54,15 +54,15 @@ export const InputSelect = (props: InputSelectProps) => {
 				render={({ field: { ref, ...rest } }) => (
 					<FormItem>
 						<FormControl>
-							<div className="absolute right-0 -translate-y-10 h-10 flex items-center pr-2 border-l border-l-white/10 border-input">
+							<div className="absolute right-0 -translate-y-10 h-10 flex items-center pr-2 border-l border-white/20 border-input">
 								<select
 									className={cn(
-										"custom-select appearance-none pr-10 bg-no-repeat disabled:bg-white/10 border rounded-md focus:outline-hidden focus:ring-0 focus-visible:ring-0 pl-3 text-muted/75 border-transparent",
+										"custom-select appearance-none pr-10 bg-no-repeat disabled:bg-white/10 border rounded-md focus:outline-none pl-3 bg-black text-gray-100 border-transparent",
 									)}
 									{...rest}
 								>
 									{options.map((option) => (
-										<option key={option.value} value={option.label}>
+										<option key={option.value} value={option.label} className="bg-black text-white">
 											{option.label}
 										</option>
 									))}

@@ -53,7 +53,7 @@ export const AdminTableFooter = (props: AdminTableFooterProps) => {
 							disabled={disabled}
 							className="-mt-1"
 							noDefault={false}
-							selectClassName="bg-primary-800 text-muted/75 border-primary-800"
+							selectClassName="bg-black text-gray-100 border-white/20"
 						/>
 						<CustomPagination
 							totalPages={totalPages}

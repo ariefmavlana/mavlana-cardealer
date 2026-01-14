@@ -28,18 +28,18 @@ export const SettingsPageContent = () => {
 	const [_, formAction] = useActionState(logoutOfAllSessions, null);
 
 	return (
-		<div className="divide-y divide-white/5 px-6">
-			<div className="grid max-w-7xl grid-cols-1 gap-x-8 md:grid-cols-3">
+		<div className="divide-y divide-white/10 px-6">
+			<div className="grid max-w-7xl grid-cols-1 gap-x-8 md:grid-cols-3 bg-[#0A0A0A] p-6 rounded-lg border border-white/10 shadow-lg">
 				<div>
-					<h2 className="text-base font-semibold leading-7 text-muted">
+					<h2 className="text-base font-semibold leading-7 text-white font-heading tracking-wide uppercase">
 						Log out of all sessions
 					</h2>
-					<p className="mt-1 text-sm leading-6 text-muted/75">
+					<p className="mt-2 text-sm leading-6 text-gray-500">
 						This will log out out of all of your sessions across all of your
 						devices of which you are currently logged into.
 					</p>
 				</div>
-				<form action={formAction} className="md:col-span-2">
+				<form action={formAction} className="md:col-span-2 flex items-center justify-end md:justify-start md:mt-0 mt-4">
 					<LogoutButton />
 				</form>
 			</div>

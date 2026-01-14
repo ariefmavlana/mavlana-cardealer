@@ -63,7 +63,7 @@ export const NewsletterForm = () => {
 			<h3 className="text-xl font-bold text-primary">
 				Subscribe to our inventory updates
 			</h3>
-			<p className="text-gray-700">
+			<p className="text-green-400">
 				Enter your details to receive new stock updates
 			</p>
 			<Form {...form}>

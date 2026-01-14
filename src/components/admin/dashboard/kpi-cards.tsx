@@ -95,42 +95,46 @@ const KPICard = (props: DashboardItem[][number]) => {
 	const { icon: Icon, ...rest } = props;
 
 	return (
-		<Card key={rest.id} className="bg-gray-800 border-gray-700">
+		<Card key={rest.id} className="bg-[#0A0A0A] border-white/10 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(212,175,55,0.1)]">
 			<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 				<div className="flex flex-col space-y-1">
-					<CardTitle className="text-gray-100">{rest.title}</CardTitle>
-					<CardDescription className="text-muted">
+					<CardTitle className="text-sm font-medium text-gray-200 uppercase tracking-wider">{rest.title}</CardTitle>
+					<CardDescription className="text-gray-500 text-xs">
 						{rest.description}
 					</CardDescription>
 				</div>
-				<Icon className="h-6 w-6 text-gray-400" />
+				<Icon className="h-5 w-5 text-primary" />
 			</CardHeader>
 
-			<CardContent className="flex items-center justify-between">
-				<span className="text-2xl font-bold text-gray-100">
+			<CardContent className="flex items-center justify-between mt-2">
+				<span className="text-2xl font-bold text-white font-heading">
 					{rest.style === "currency"
 						? formatPrice({ price: rest.amount, currency: "GBP" })
 						: formatNumber(rest.amount, {
-								style: rest.style,
-								currency: "GBP",
-								maximumFractionDigits: 0,
-							})}
+							style: rest.style,
+							currency: "GBP",
+							maximumFractionDigits: 0,
+						})}
 				</span>
 
-				<p
+				<div
 					className={cn(
-						"text-xs",
-						!rest.percentage && "!text-gray-200",
-						rest.percentage > 0 ? "text-green-500" : "text-red-500",
+						"text-xs px-2 py-1 rounded-full border",
+						!rest.percentage && "border-gray-800 text-gray-500",
+						rest.percentage > 0
+							? "bg-green-500/10 border-green-500/20 text-green-400"
+							: rest.percentage < 0
+								? "bg-red-500/10 border-red-500/20 text-red-400"
+								: "border-gray-800 text-gray-500"
 					)}
 				>
 					{rest.percentage === 0
 						? `${rest.percentage}%`
 						: formatNumber(rest.percentage / 100, {
-								style: "percent",
-								maximumFractionDigits: 0,
-							})}
-				</p>
+							style: "percent",
+							maximumFractionDigits: 0,
+						})}
+				</div>
 			</CardContent>
 		</Card>
 	);

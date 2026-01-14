@@ -6,7 +6,7 @@ import { AI } from "../_actions/ai";
 export default async function AdminLayout({ children }: PropsWithChildren) {
 	return (
 		<AI>
-			<div className="flex bg-primary-900 min-h-screen w-full">
+			<div className="flex bg-[#050505] min-h-screen w-full">
 				<AdminSidebar />
 				<div className="flex flex-col flex-1 overflow-hidden">
 					<AdminHeader />

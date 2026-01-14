@@ -38,7 +38,7 @@ export const PublicFooter = () => {
 							Mavlana<span className="text-primary">.</span>
 						</span>
 					</Link>
-					<p className="text-gray-400 text-sm font-light max-w-xs leading-relaxed">
+					<p className="text-gray-300 text-sm font-light max-w-xs leading-relaxed">
 						Curating the finest automotive engineering for discerning collectors.
 						Experience the pinnacle of luxury.
 					</p>
@@ -62,7 +62,7 @@ export const PublicFooter = () => {
 							<li key={link.id}>
 								<Link
 									href={link.href}
-									className="text-gray-400 hover:text-primary transition-colors text-sm tracking-wide uppercase"
+									className="text-gray-300 hover:text-primary transition-colors text-sm tracking-wide uppercase"
 								>
 									{link.label}
 								</Link>
@@ -71,7 +71,7 @@ export const PublicFooter = () => {
 						<li>
 							<Link
 								href={routes.signIn}
-								className="text-gray-400 hover:text-primary transition-colors text-sm tracking-wide uppercase"
+								className="text-gray-300 hover:text-primary transition-colors text-sm tracking-wide uppercase"
 							>
 								Backoffice
 							</Link>
@@ -83,14 +83,14 @@ export const PublicFooter = () => {
 					<h4 className="text-white font-heading font-bold uppercase tracking-wider text-sm">
 						Stay Informed
 					</h4>
-					<p className="text-gray-400 text-sm font-light">
+					<p className="text-gray-300 text-sm font-light">
 						Subscribe for exclusive access to new arrivals.
 					</p>
 					<NewsletterForm />
 				</div>
 			</div>
 
-			<div className="container mx-auto mt-16 pt-8 border-t border-white/5 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-gray-600 text-xs tracking-wider">
+			<div className="container mx-auto mt-16 pt-8 border-t border-white/5 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-gray-400 text-xs tracking-wider">
 				<p>&copy; {new Date().getFullYear()} Mavlana Motors. All Rights Reserved.</p>
 				<div className="flex gap-x-6 mt-4 md:mt-0">
 					<span>Privacy Policy</span>

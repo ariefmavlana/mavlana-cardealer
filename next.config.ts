@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
 		authInterrupts: true,
 		nodeMiddleware: true,
 		reactCompiler: true,
-		optimizeCss: true,
+		optimizeCss: false,
 		optimizeServerReact: true,
 		optimizePackageImports: ["lucide-react", "date-fns"],
 	},

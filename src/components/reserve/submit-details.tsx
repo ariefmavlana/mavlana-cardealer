@@ -106,7 +106,7 @@ export const SubmitDetails = (props: MultiStepFormComponentProps) => {
 	return (
 		<Form {...form}>
 			<form
-				className="mx-auto bg-white flex flex-col rounded-b-lg shadow-lg p-6 h-96"
+				className="mx-auto bg-[#0A0A0A] border border-white/10 flex flex-col rounded-b-lg shadow-2xl p-6 h-[28rem] text-white"
 				onSubmit={form.handleSubmit(onSubmitDetails)}
 			>
 				<div className="space-y-6 flex-1">
@@ -116,9 +116,13 @@ export const SubmitDetails = (props: MultiStepFormComponentProps) => {
 							name="firstName"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel htmlFor="firstName">Enter First Name</FormLabel>
+									<FormLabel htmlFor="firstName" className="text-gray-300">Enter First Name</FormLabel>
 									<FormControl>
-										<Input placeholder="Enter your first name" {...field} />
+										<Input
+											placeholder="Enter your first name"
+											{...field}
+											className="bg-black border-white/20 text-white placeholder:text-gray-500 focus-visible:ring-primary"
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -129,9 +133,13 @@ export const SubmitDetails = (props: MultiStepFormComponentProps) => {
 							name="lastName"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel htmlFor="lastName">Enter Last Name</FormLabel>
+									<FormLabel htmlFor="lastName" className="text-gray-300">Enter Last Name</FormLabel>
 									<FormControl>
-										<Input placeholder="Enter your last name" {...field} />
+										<Input
+											placeholder="Enter your last name"
+											{...field}
+											className="bg-black border-white/20 text-white placeholder:text-gray-500 focus-visible:ring-primary"
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -142,9 +150,13 @@ export const SubmitDetails = (props: MultiStepFormComponentProps) => {
 							name="email"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel htmlFor="email">Enter Email Address</FormLabel>
+									<FormLabel htmlFor="email" className="text-gray-300">Enter Email Address</FormLabel>
 									<FormControl>
-										<Input placeholder="Enter your email address" {...field} />
+										<Input
+											placeholder="Enter your email address"
+											{...field}
+											className="bg-black border-white/20 text-white placeholder:text-gray-500 focus-visible:ring-primary"
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -155,9 +167,13 @@ export const SubmitDetails = (props: MultiStepFormComponentProps) => {
 							name="mobile"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel htmlFor="mobile">Enter Mobile</FormLabel>
+									<FormLabel htmlFor="mobile" className="text-gray-300">Enter Mobile</FormLabel>
 									<FormControl>
-										<Input placeholder="Enter your mobile number" {...field} />
+										<Input
+											placeholder="Enter your mobile number"
+											{...field}
+											className="bg-black border-white/20 text-white placeholder:text-gray-500 focus-visible:ring-primary"
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -172,14 +188,14 @@ export const SubmitDetails = (props: MultiStepFormComponentProps) => {
 								<FormItem className="flex items-center gap-x-2">
 									<FormControl>
 										<Checkbox
-											className="cursor-pointer m-0"
+											className="cursor-pointer m-0 border-white/40 data-[state=checked]:bg-primary data-[state=checked]:text-black"
 											onCheckedChange={(e) => onChange(e ? "true" : "false")}
 											{...rest}
 										/>
 									</FormControl>
 									<FormLabel
 										htmlFor="terms"
-										className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+										className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-300"
 									>
 										I agree to the terms and conditions
 									</FormLabel>

@@ -7,7 +7,7 @@ export const AdminSearch = () => {
 	return (
 		<SearchInput
 			placeholder={`Search ${pathname.split("/")[2]}...`}
-			className="w-full focus-visible:ring-0 placeholder:text-muted text-muted appearance-none bg-primary-800 border border-primary-800 pl-8"
+			className="w-full focus-visible:ring-primary bg-black border-white/20 text-white placeholder:text-gray-500 rounded-full pl-10 h-10 transition-all duration-300 focus:shadow-[0_0_15px_rgba(212,175,55,0.15)]"
 		/>
 	);
 };

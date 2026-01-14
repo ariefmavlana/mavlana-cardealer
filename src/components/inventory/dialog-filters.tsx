@@ -110,25 +110,25 @@ export const DialogFilters = (props: DialogFiltersProps) => {
 	return (
 		<Dialog open={open} onOpenChange={setIsOpen}>
 			<DialogTrigger asChild>
-				<Button variant="outline" size="icon" className="lg:hidden">
+				<Button variant="outline" size="icon" className="lg:hidden border-white/20 bg-black text-white hover:bg-white/10 hover:text-primary">
 					<Settings2 className="w-4 h-4" />{" "}
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="max-w-[425px] h-[90vh] overflow-y-auto rounded-xl bg-white">
+			<DialogContent className="max-w-[425px] h-[90vh] overflow-y-auto rounded-xl bg-black/95 backdrop-blur-xl border border-white/10 text-white">
 				<div className="space-y-6">
 					<div>
-						<div className="text-lg font-semibold flex justify-between">
-							<DialogTitle>Filters</DialogTitle>
+						<div className="text-lg font-heading font-bold text-white flex justify-between uppercase tracking-wider">
+							<DialogTitle className="text-white">Filters</DialogTitle>
 						</div>
 						<div className="mt-2" />
 					</div>
 
 					<SearchInput
 						placeholder="Search classifieds..."
-						className="w-full px-3 py-2 border rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+						className="w-full px-4 py-2 bg-white/5 border border-white/10 text-white rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary placeholder:text-gray-400"
 					/>
 
-					<div className="space-y-2">
+					<div className="space-y-4">
 						<TaxonomyFilters
 							searchParams={searchParams}
 							handleChange={handleChange}
@@ -177,6 +177,7 @@ export const DialogFilters = (props: DialogFiltersProps) => {
 								label: value,
 								value,
 							}))}
+							selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 						/>
 						<Select
 							label="Odometer Unit"
@@ -187,6 +188,7 @@ export const DialogFilters = (props: DialogFiltersProps) => {
 								label: formatOdometerUnit(value),
 								value,
 							}))}
+							selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 						/>
 						<Select
 							label="Transmission"
@@ -197,6 +199,7 @@ export const DialogFilters = (props: DialogFiltersProps) => {
 								label: formatTransmission(value),
 								value,
 							}))}
+							selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 						/>
 						<Select
 							label="Fuel Type"
@@ -207,6 +210,7 @@ export const DialogFilters = (props: DialogFiltersProps) => {
 								label: formatFuelType(value),
 								value,
 							}))}
+							selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 						/>
 						<Select
 							label="Body Type"
@@ -217,6 +221,7 @@ export const DialogFilters = (props: DialogFiltersProps) => {
 								label: formatBodyType(value),
 								value,
 							}))}
+							selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 						/>
 						<Select
 							label="Colour"
@@ -227,6 +232,7 @@ export const DialogFilters = (props: DialogFiltersProps) => {
 								label: formatColour(value),
 								value,
 							}))}
+							selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 						/>
 						<Select
 							label="ULEZ Compliance"
@@ -237,6 +243,7 @@ export const DialogFilters = (props: DialogFiltersProps) => {
 								label: formatUlezCompliance(value),
 								value,
 							}))}
+							selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 						/>
 
 						<Select
@@ -248,6 +255,7 @@ export const DialogFilters = (props: DialogFiltersProps) => {
 								label: Number(i + 1).toString(),
 								value: Number(i + 1).toString(),
 							}))}
+							selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 						/>
 						<Select
 							label="Seats"
@@ -258,32 +266,33 @@ export const DialogFilters = (props: DialogFiltersProps) => {
 								label: Number(i + 1).toString(),
 								value: Number(i + 1).toString(),
 							}))}
+							selectClassName="text-white bg-black/60 border-white/20 focus:border-primary backdrop-blur-sm"
 						/>
 					</div>
 
-					<div className="flex flex-col space-y-2">
+					<div className="flex flex-col space-y-3 pt-4 border-t border-white/10">
 						<Button
 							type="button"
 							onClick={() => setIsOpen(false)}
-							className="w-full"
+							className="w-full bg-primary text-black hover:bg-white hover:text-black font-bold uppercase tracking-wide"
 						>
-							Search{count > 0 ? ` (${count})` : null}
+							Show Results{count > 0 ? ` (${count})` : null}
 						</Button>
 
 						{filterCount > 0 && (
 							<Button
 								type="button"
-								variant="outline"
+								variant="ghost"
 								onClick={clearFilters}
 								aria-disabled={!filterCount}
 								className={cn(
-									"text-sm py-1",
+									"text-sm py-1 text-gray-400 hover:text-white hover:bg-transparent",
 									!filterCount
 										? "disabled opacity-50 pointer-events-none cursor-default"
-										: "hover:underline",
+										: "hover:underline cursor-pointer",
 								)}
 							>
-								Clear all {filterCount ? `(${filterCount})` : null}
+								Reset Filters {filterCount ? `(${filterCount})` : null}
 							</Button>
 						)}
 					</div>
